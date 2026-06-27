@@ -17,6 +17,21 @@ resource "azurerm_key_vault" "this" {
     key_permissions    = ["Get", "List", "Create"]
   }
 
+  # Extra deployers (e.g. CI/CD SP or local user) — prevents access policy flip-flopping
+  dynamic "access_policy" {
+    for_each = [
+      for id in var.extra_deployer_object_ids : id
+      if id != var.deployer_object_id
+    ]
+    content {
+      tenant_id = var.tenant_id
+      object_id = access_policy.value
+
+      secret_permissions = ["Get", "List", "Set", "Delete", "Purge"]
+      key_permissions    = ["Get", "List", "Create"]
+    }
+  }
+
   # VM managed identity: read-only (least-privilege)
   access_policy {
     tenant_id = var.tenant_id
