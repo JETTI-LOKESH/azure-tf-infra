@@ -12,16 +12,13 @@ terraform {
     }
   }
 
-  # Remote backend (recommended for production/team use)
-  # To enable: run scripts/bootstrap-backend.sh first, then uncomment below
-  # and run: terraform init -migrate-state
-  #
-  # backend "azurerm" {
-  #   resource_group_name  = "rg-terraform-state"
-  #   storage_account_name = "<created-by-bootstrap>"
-  #   container_name       = "tfstate"
-  #   key                  = "infra-assessment.tfstate"
-  # }
+  # Remote backend for shared state management
+  backend "azurerm" {
+    resource_group_name  = "rg-terraform-state"
+    storage_account_name = "tfstateazuretfinfra"
+    container_name       = "tfstate"
+    key                  = "infra-assessment.tfstate"
+  }
 }
 
 # Authentication strategy:
