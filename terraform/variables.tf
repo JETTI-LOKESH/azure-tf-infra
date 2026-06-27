@@ -39,3 +39,9 @@ variable "project_name" {
   type        = string
   default     = "infra-assessment"
 }
+
+variable "extra_deployer_object_ids" {
+  description = "Additional object IDs (users or SPs) that need Key Vault deployer access, to avoid access policy flip-flopping between local and CI/CD"
+  type        = list(string)
+  default     = []
+}

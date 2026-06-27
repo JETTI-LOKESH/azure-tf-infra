@@ -46,8 +46,9 @@ module "keyvault" {
   location                 = azurerm_resource_group.main.location
   project_name             = var.project_name
   tenant_id                = data.azurerm_client_config.current.tenant_id
-  deployer_object_id       = data.azurerm_client_config.current.object_id
-  vm_identity_principal_id = module.compute.vm_identity_principal_id
+  deployer_object_id        = data.azurerm_client_config.current.object_id
+  extra_deployer_object_ids = var.extra_deployer_object_ids
+  vm_identity_principal_id  = module.compute.vm_identity_principal_id
   ssh_private_key_pem      = module.compute.ssh_private_key_pem
   tags                     = azurerm_resource_group.main.tags
 }

@@ -28,6 +28,12 @@ variable "deployer_object_id" {
   type        = string
 }
 
+variable "extra_deployer_object_ids" {
+  description = "Additional object IDs that need deployer-level Key Vault access"
+  type        = list(string)
+  default     = []
+}
+
 variable "vm_identity_principal_id" {
   description = "Principal ID of the VM's managed identity"
   type        = string
