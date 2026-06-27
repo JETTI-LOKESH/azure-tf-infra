@@ -38,3 +38,4 @@ provider "azurerm" {
   # OIDC auth for CI/CD (GitHub Actions); ignored when using Azure CLI locally
   use_oidc = true
 }
+
