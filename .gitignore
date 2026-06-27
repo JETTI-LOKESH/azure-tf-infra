@@ -1,0 +1,26 @@
+# Terraform state and cache
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+*.tfplan
+tfplan
+
+# Variable files with real values
+terraform.tfvars
+*.auto.tfvars
+
+# SSH keys
+*.pem
+*.key
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Screenshots/debug
+*.png
