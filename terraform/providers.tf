@@ -27,11 +27,14 @@ terraform {
 # - Production: Managed Identity or OIDC
 # The provider block has no auth config, so Terraform uses the Azure CLI token
 # automatically. For CI/CD, the GitHub Actions workflow sets environment variables
-# (ARM_CLIENT_ID, ARM_TENANT_ID, ARM_SUBSCRIPTION_ID) via OIDC.
+# (ARM_CLIENT_ID, ARM_TENANT_ID, ARM_SUBSCRIPTION_ID, ARM_USE_OIDC) via OIDC.
 provider "azurerm" {
   features {
     key_vault {
       purge_soft_delete_on_destroy = true
     }
   }
+
+  # OIDC auth for CI/CD (GitHub Actions); ignored when using Azure CLI locally
+  use_oidc = true
 }
